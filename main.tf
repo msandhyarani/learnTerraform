@@ -3,27 +3,33 @@ provider "aws" {
     access_key = "AKIAZAYPWPVHQFCJOIPJ"
     secret_key = "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"  
 }
+
+variable "dev-variable" {
+  description = "assigning a variable"
+}
+
+
 # creting a new vpc and its subnet using resource component
 # resource is used to create a new resource on cloud platform using cloud provider
 resource "aws_vpc" "development-vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "myfirstvpc"
+    Name = "development"
   }
 }
 
 resource "aws_subnet" "dev-subnet-1" {
    vpc_id = aws_vpc.development-vpc.id
-   cidr_block = "10.0.10.0/24"
+   cidr_block = var.dev-variable
    availability_zone = "ap-south-1a"
    tags = {
-    Name = "mysubnet1"
+    Name = "subnet-1-dev"
    }
 }
  
 # creating a new subnet with existing default vpc using data resource component
 # data resoruce is used to qurey the existing resources
-data "aws_vpc" "existing_vpc" {
+/*data "aws_vpc" "existing_vpc" {
     default = true
 }
 
@@ -41,5 +47,5 @@ output "dev-vpc" {
 
 output "subnet-id" {
   value = aws_subnet.dev-subnet-1.id
-}
+}*/
 
