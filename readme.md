@@ -115,5 +115,8 @@ Data resources: Allow data to be fetched for use in tf configuration (used to qu
 2. Without user inputs we can do directly terraform apply -var"dev-variable=10.0.30.0/24" (we are not going to get any promted input here)
 
 3. Most correct way- best practice
-    Defining variables file and assigning values to all the variables in terraform configuration (variable.tf) 
-   
+    Defining variables file and assigning values to all the variables in terraform configuration (terraform.tfvars)
+    if we change terraform.tfvars name to different like terraform-dev.tfvars we need to provide variable file name while applying like 
+    
+    terraform apply --var-file terraform-dev.tfvars
+
