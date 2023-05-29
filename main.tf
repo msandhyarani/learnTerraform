@@ -1,17 +1,16 @@
+#branch=terraform2 adding environment variables removing hardcoded access and secret keys
 provider "aws" {
     region = "ap-south-1"
-    access_key = "AKIAZAYPWPVHQFCJOIPJ"
-    secret_key = "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"  
 }
 
-# passing variables as list of strings 
+# branch=terraform1a passing variables as list of strings 
 /*variable "variable" {
   description = "assigning a variable"
   type = list(string)
 
 }*/
 
-#passing variables as list of objects
+#branch= terraform1b passing variables as list of objects
 variable "cidr_block" {
   description = "cidr_blocks and names for vpc and subnet"
   type = list(object({
@@ -20,7 +19,8 @@ variable "cidr_block" {
   }))
 }
 
-
+#this can be configure locally using export TF_var_avail_zone="ap-south-1a"
+#variable "avail_zone" {} 
 
 # creting a new vpc and its subnet using resource component
 # resource is used to create a new resource on cloud platform using cloud provider
@@ -34,6 +34,8 @@ resource "aws_vpc" "development-vpc" {
 resource "aws_subnet" "dev-subnet-1" {
    vpc_id = aws_vpc.development-vpc.id
    cidr_block = var.cidr_block[1].cidr_block
+   #as per line 23 this can also be 
+   #availabilty_zone = var.avail_zone
    availability_zone = "ap-south-1a"
    tags = {
     Name = var.cidr_block[1].name

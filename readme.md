@@ -97,4 +97,17 @@ Data resources: Allow data to be fetched for use in tf configuration (used to qu
      availability_zone = "ap-south-1a"
      }
     
- 
+
+Environment variables: we can set environment variables in 2 types 
+1. set an env variables in terminal by aws_secret_access_key then terraform will pickup
+
+export AWS_SECRET_ACCESS_KEY=
+export AWS_ACCESS_KEY_ID=
+
+2. default storage for aws location env | grep aws
+ls ~/.aws/credentials
+by doing aws configure  then type access and secret keys 
+
+Set variables using TF custom environment variables
+export TF_var_avail_zone="ap-south-1a" 
+basically TF_var prefix tells the terraform that this is a global variable and  takes from the locally defined variable
