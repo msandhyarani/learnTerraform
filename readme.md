@@ -97,4 +97,23 @@ Data resources: Allow data to be fetched for use in tf configuration (used to qu
      availability_zone = "ap-south-1a"
      }
     
- 
+ outputs: to show the defined output on screen (we can also check by doing terraform show and statefile for defined values)
+    
+    output "dev-vpc" {
+      value = aws_vpc.existing_vpc.id
+    }
+   
+  Variables: to replace hard coded values we can use in different environemnts by defining the variables
+  We can define varibles in 3 types
+    
+1.By entering the variable value when we do terraform apply in teraminal--> this needs user inputs in middle of apply
+    
+    variable "dev-variable" {
+      description = "defining the variable"
+    }
+
+2. Without user inputs we can do directly terraform apply -var"dev-variable=10.0.30.0/24" (we are not going to get any promted input here)
+
+3. Most correct way- best practice
+    Defining variables file and assigning values to all the variables in terraform configuration (variable.tf) 
+   
