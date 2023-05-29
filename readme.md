@@ -120,3 +120,7 @@ Data resources: Allow data to be fetched for use in tf configuration (used to qu
     
     terraform apply --var-file terraform-dev.tfvars
 
+-->Varibles can be defined by giving default values we can give default values in main config file and add the additional value in          .tfvars so that terraform will replaces the dynamic values
+-->In Variables we can set a variable type as string, boolen, number etc., called as type constructors (which type of values are accepted)
+
+
