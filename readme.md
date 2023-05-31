@@ -111,3 +111,15 @@ by doing aws configure  then type access and secret keys
 Set variables using TF custom environment variables
 export TF_var_avail_zone="ap-south-1a" 
 basically TF_var prefix tells the terraform that this is a global variable and  takes from the locally defined variable
+
+Setup ssh keys: insted of generating every time from console using resource we can automate 
+
+resource "ssh-key_pair" "ssh-key" {
+    key_name = "ssh-keys"
+    public_key = "ssh-rsa ..." 
+    or
+    public_key = var.my_public_key (we can refer value in variable file)
+    or 
+    public_key = $(file(var.public_key
+    )) (we can reference file location) 
+}
